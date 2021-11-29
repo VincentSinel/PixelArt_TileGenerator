@@ -1,0 +1,17 @@
+
+#resultCanvas{
+	transform: scale(5);
+}
+
+.relative{
+	position: relative;
+	background-image: url("image/png");
+    background-repeat: repeat;
+}
+
+.PreviewCanvas{
+    background-color: var(--Ba00DP);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}

@@ -1,0 +1,284 @@
+<html id="Page">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="CSS/normalize.css">
+    <link rel="stylesheet" type="text/css" href="CSS/DarkTheme.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Grids.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Page.css">
+</head>
+<body class="MainGrid">
+    <div class="C1 PanelGrid">
+		
+		<!--
+		<fileinput id="file-input1" class="R1" text="Choisir un fichier" accept="image/*">
+			<div>
+				bonjour<br>
+				<canvas id="SelectedImage"></canvas>
+				<image src="https://duckduckgo.com/favicon.ico" width="32" height="32"/>
+			</div>
+		</fileinput>
+		-->
+		
+		
+		<div class="custom-select R1">
+			<select id="TypeArt" onchange="CheckMenu()">
+			  <option value="Grass">Grass</option>
+			  <option value="Rock">Rock</option>
+			  <option value="Sand">Sand</option>
+			  <option value="Water">Water</option>
+			</select>
+		</div>
+		
+		<div id="GrassParameters" class="R2 MenuGrid">
+			<p class="F1">Tile Width</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeXGrass" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Tile Height</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeYGrass" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Light Color</p>
+			<div class="input-color-container F1">
+				<input type="color" id="LightColor" value="#68A618">
+			</div>
+			<input type="range" id="ALightColor" onchange="document.getElementById('LightColor').style.opacity = this.value;" min="0" max="1" step="0.1" value="1">
+			<p class="F1">Dark Color</p>
+			<div class="input-color-container F1">
+				<input type="color" id="DarkColor" value="#416B10">
+			</div>
+			<input type="range" id="ADarkColor" onchange="document.getElementById('DarkColor').style.opacity = this.value;" min="0" max="1" step="0.1" value="1">
+			<p class="F1">Fill Color</p>
+			<div class="input-color-container F1">
+				<input type="color" id="BackColor" value="#416B10">
+			</div>
+			<input type="range" id="ABackColor" onchange="document.getElementById('BackColor').style.opacity = this.value;" min="0" max="1" step="0.1" value="1">
+			
+			
+			<p class="F1">Grass Height</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="GrassHeight" value="5" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Grass Width</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="GrassWidth" value="3" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Grass Quantity</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="GrassQuantity" value="200" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Color Noise</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="ColorNoise" value="4" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Back Noise</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="ColorBackNoise" value="10" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			
+			<button class="F2 buttonPrimar" onclick="DrawGrass()">
+				Generate
+			</button>
+		</div>
+
+		<div id="RockParameters" class="R2 MenuGrid">
+			<p class="F1">Tile Width</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeXRock" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Tile Height</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeYRock" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<button class="F2 buttonPrimar" onclick="DrawStone()">
+				Generate
+			</button>
+		</div>
+
+		<div id="SandParameters" class="R2 MenuGrid">
+			<p class="F1">Tile Width</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeXSand" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Tile Height</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeYSand" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<button class="F2 buttonPrimar" onclick="DrawStone()">
+				Generate
+			</button>
+		</div>
+
+		<div id="WaterParameters" class="R2 MenuGrid">
+			<p class="F1">Tile Width</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeXWater" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Tile Height</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="150" id="TileSizeYWater" value="32" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Frame</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" max="120" id="Water_FrameCount" value="8" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">BackGround Color 1</p>
+			<div class="input-color-container F1">
+				<input type="color" id="Water_BackColor1" value="#1E5079">
+			</div>
+			<input type="range" id="Water_ABackColor1" onchange="document.getElementById('Water_BackColor1').style.opacity = this.value;" min="0" max="1" step="0.1" value="1">
+			<p class="F1">Background Color 2</p>
+			<div class="input-color-container F1">
+				<input type="color" id="Water_BackColor2" value="#173E5E">
+			</div>
+			<input type="range" id="Water_ABackColor2" onchange="document.getElementById('Water_BackColor2').style.opacity = this.value;" min="0" max="1" step="0.1" value="1">
+			<p class="F1">Color Noise</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="0" id="Water_BackColorNoise" value="5" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Perlin Coef</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="Water_BackColorCoef" value="20" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Perlin Change Coef</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="Water_BackColorChangeCoef" value="60" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+
+
+			
+			<p class="F1">Cellule Intersection Color</p>
+			<div class="input-color-container F1">
+				<input type="color" id="Water_CellColor1" value="#FFFFFF">
+			</div>
+			<input type="range" id="Water_ACellColor1" onchange="document.getElementById('Water_CellColor1').style.opacity = this.value;" min="0" max="1" step="0.1" value="0.4">
+			<p class="F1">Cellule Center Color</p>
+			<div class="input-color-container F1">
+				<input type="color" id="Water_CellColor2" value="#0000FF">
+			</div>
+			<input type="range" id="Water_ACellColor2" onchange="document.getElementById('Water_CellColor2').style.opacity = this.value;" min="0" max="1" step="0.1" value="0">
+			<p class="F1">Color Noise</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="0" id="Water_CellColorNoise" value="5" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Color Gradiant speed</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="Water_CellColorPow" value="4" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+
+
+			<p class="F1">Y space coefficient</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="Water_CoefY" value="2" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+			<p class="F1">Nbr Voronoi point</p>
+			<div class="number-input">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+				<input class="quantity" min="1" id="Water_NbrPoint" value="10" type="number">
+				<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+
+
+			<button class="F2 buttonPrimar" onclick="DrawWater()">
+				Generate
+			</button>
+		</div>
+			
+		<button class="R3 buttonSecond" onclick="SaveImage()">
+			Save
+		</button>
+		<label style="font-size: 10px;height: 15px; margin: 0; padding: 0;">
+			Create by Sinel Vincent 	 
+			<a href="http://creativecommons.org/licenses/by-sa/4.0/"  target="_blank" rel="license noreferrer noopener"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+		</label>
+	</div>
+	<div id="Result" class="C2 transparent relative">
+		<div class="PreviewCanvas">
+			<canvas id="ZoomView"></canvas>
+		</div>
+	</div>
+		
+</body>
+<script>
+	var select = document.getElementById("TypeArt");
+	CheckMenu()
+
+	function CheckMenu(){
+		let value = select.value;
+		let menu1 = document.getElementById("GrassParameters");
+		let menu2 = document.getElementById("RockParameters");
+		let menu3 = document.getElementById("SandParameters");
+		let menu4 = document.getElementById("WaterParameters");
+		menu1.style.display = "none";
+		menu2.style.display = "none";
+		menu3.style.display = "none";
+		menu4.style.display = "none";
+		if (value == "Grass")
+		{
+			menu1.style.display = "flex";
+		}
+		else if (value == "Rock")
+		{
+			menu2.style.display = "flex";
+		}
+		else if (value == "Sand")
+		{
+			menu3.style.display = "flex";
+		}
+		else if (value == "Water")
+		{
+			menu4.style.display = "flex";
+		}
+	}
+
+
+</script>
+
+<script src="JS/ReplaceObject.js"></script>
+<script src="JS/Drawing/Base.js"></script>
+<script src="JS/Drawing/DrawMethod.js"></script>
+<script src="JS/Voronoi/rhill-voronoi-core.js"></script>
+<script src="JS/Poisson/poisson.js"></script>
+<script src="JS/Noise/perlin.js"></script>
+<script src="https://rawgithub.com/jwagner/simplex-noise.js/master/simplex-noise.js"></script>
+</html>

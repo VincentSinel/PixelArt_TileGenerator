@@ -1,0 +1,355 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Colors */
+:root {
+	--Ba00DP: #121212;
+	--Ba01DP: #ffffff05;
+	--Er01DP: #CF667930;
+	--Pr01DP: #03DAC5;
+	--Back02DP: #ffffff07;
+	--Back03DP: #ffffff08;
+	--Back04DP: #ffffff09;
+	--Back06DP: #ffffff11;
+	--Back08DP: #ffffff12;
+	--Back12DP: #ffffff14;
+	--Back16DP: #ffffff15;
+	--Back24DP: #ffffff16;
+  
+	--TextSimple : #fff;
+	--Primar: #BB86FCC0;
+	--PrimarHover: #BB86FC;
+	--Second: #03DAC5C0;
+	--SecondHover: #03DAC5;
+	--Danger: #CF6679C0;
+	--DangerHover: #CF6679;
+	
+	--SelectColor: #0ff;
+  
+}
+
+/****** General Styles *********/
+html, body {
+	width: auto;
+	height: 100%;
+}
+html{
+	--scrollbarBG: transparent;
+	--thumbBG: rgba(100, 100, 100, 0.3);
+	background: var(--Ba00DP , #000);
+	/*overflow: hidden;*/
+}
+body{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 5px;
+}
+
+* {
+    box-sizing: border-box;
+	font-weight: bold;
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+	font-weight: bold;
+	font-size: 16;
+}
+
+div, button{
+	box-shadow: 0 0px 7px rgba(0, 0, 0, 0.4);
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+	border: 0;
+	color: var(--TextSimple, #888);
+}
+
+div {
+	background: var(--Back03DP , #ffffff08);
+	scrollbar-width: thin;
+	scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+	overflow-y: auto;
+}
+
+div::-webkit-scrollbar {
+	width: 11px;
+}
+div::-webkit-scrollbar-track {
+	background: var(--scrollbarBG);
+}
+div::-webkit-scrollbar-thumb {
+	background-color: var(--thumbBG) ;
+	border-radius: 6px;
+}
+
+.transparent{
+	background: transparent;
+}
+
+canvas {
+	image-rendering: crisp-edges; /* Pixel perfect */
+}
+
+button,
+.file-input{
+  height: minmax(50px,auto);
+  width: calc(100% - 10px);
+  position: relative;
+  background: var(--Back04DP, #ffffff09);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+button:hover,
+button:active,
+button:focus,
+.file-input:hover,
+.file-input:active,
+.file-input:focus,
+.input-color-container:hover,
+.input-color-container:active,
+.input-color-container:focus {
+  background: var(--Back08DP, #ffffff12);
+}
+
+button:hover,
+button:focus,
+.file-input:hover,
+.file-input:focus,
+.input-color-container:hover,
+.input-color-container:focus   {
+  transform: scale(1.02);
+}
+button:active,
+.file-input:active,
+.input-color-container:active {
+  transition: transform .05s;
+  transform: scale(0.96);
+}
+/*button:focus,*/
+.file-input:focus {	
+	border: 1px solid var(--SelectColor, #FFF);
+}
+.input-color-container{
+	position: relative;
+	overflow: hidden;
+	padding: 2px;
+	border: solid 2px var(--Back03DP, #000);
+	transition: transform .2s ease-out;
+	height: 30px;
+	min-height: 20px;
+}
+input[type=color]{
+	position: absolute;
+	right: -20px;
+	top: -20px;
+	z-index: 25;
+	width: calc(100% + 30px);
+	height: calc(100% + 30px);
+	padding: 0px;
+	border: none;
+	cursor: pointer;
+}
+
+/****** Content Styles *********/
+
+.hide {
+	visibility: hidden;
+}
+/* Primar Button */
+.buttonPrimar {
+  background: var(--Primar, #ffffff09);
+  color: #000;
+}
+.buttonPrimar:hover,
+.buttonPrimar:active,
+.buttonPrimar:focus {
+  background: var(--PrimarHover, #ffffff09);
+}
+/* Second Button */
+.buttonSecond {
+  background: var(--Second, #ffffff09);
+  color: #000;
+}
+.buttonSecond:hover,
+.buttonSecond:active,
+.buttonSecond:focus {
+  background: var(--SecondHover, #ffffff09);
+}
+/* Danger Button */
+.buttonDanger {
+  background: var(--Danger, #ffffff09);
+  color: #000;
+}
+.buttonDanger:hover,
+.buttonDanger:active,
+.buttonDanger:focus {
+  background: var(--DangerHover, #ffffff09);
+}
+/* File Input */
+.file-input,
+.file-name{
+	position: relative;
+}
+.file-input label {
+	width: 100%;
+	display: flex;
+	flex-flow: column;
+}
+.file-input input {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+/* Color Picker */
+.input-color-with-button{
+	padding: 5px;
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: 1fr auto;
+}
+.input-color-with-button div{
+	grid-column: 1;
+	margin: 0px;
+}
+.input-color-with-button button{
+	grid-column: 2;
+	margin: 0px;
+	padding: 3px 10px;
+	width: auto;
+}
+/* ComboBox */
+.custom-select {
+	position: relative;
+	font-family: Arial;
+	overflow-y: visible;
+	padding: 0px;
+    display: table;
+	background-color: transparent;
+	margin: 5px;
+	width: calc(100% - 10px);
+}
+.custom-select select {
+  display: none;
+}
+.select-selected {
+	background-color: var(--Back03DP, #000);
+	margin: 0px;
+	height: 100%;
+	display: table-cell; 
+	vertical-align: middle;
+	transition: transform .2s ease-out;
+}
+.select-selected:hover {
+	background-color: var(--Back08DP, #000);
+	transform: scale(1.02);
+}
+.select-selected:active {
+  transition: transform .05s;
+  transform: scale(0.96);
+}
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: calc(50% - 3.5px);
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: calc(50% - 10.5px);
+}
+.select-items div,
+.select-selected {
+	color: #ffffff;
+	padding: 5px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
+	transition: transform .2s ease-out;
+}
+.select-items {
+  position: absolute;
+  background-color: var(--Ba00DP, #000);
+  width: 100%;
+  margin: 5px 0px 0px 0px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.select-hide {
+  display: none;
+}
+.select-items div:hover, 
+.same-as-selected {
+	background-color: var(--Back08DP, #000);
+	transform: scale(1.02);
+}
+.select-items div:active {
+  transition: transform .05s;
+  transform: scale(0.96);
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.number-input {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: auto 5;
+}
+
+.number-input {
+  box-sizing: border-box;
+  margin: 5px;
+  min-height: 20px;
+}
+
+.number-input button {
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  position: relative;
+  flex: 1 ;
+}
+
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  width: 1rem;
+  height: 2px;
+  background-color: #FFF;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+  font-family: sans-serif;
+  padding: 2px;
+  font-size: 16;
+  height: 100%;
+  flex: 3 1;
+  font-weight: bold;
+  text-align: center;
+}
+
+input[type=range]{
+	margin: 0 5px;
+}
